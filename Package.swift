@@ -17,26 +17,28 @@ let package = Package(
         ),
         // Optional widget renderers, passed through from storyly-placement-ios so consumers do not
         // have to add that package as well. Each widget type must be linked for it to render; link
-        // only the ones you use.
+        // only the ones you use. The `SwiftUI` suffix is required: SwiftPM/Xcode cannot have two
+        // products with the same name in one dependency graph, and the unsuffixed names are taken
+        // by storyly-placement-ios itself, which is always in the graph through this package.
         .library(
-            name: "StorylyStoryBar",
-            targets: ["StorylyStoryBarWrapper"]
+            name: "StorylyStoryBarSwiftUI",
+            targets: ["StorylyStoryBarPassthrough"]
         ),
         .library(
-            name: "StorylyBanner",
-            targets: ["StorylyBannerWrapper"]
+            name: "StorylyBannerSwiftUI",
+            targets: ["StorylyBannerPassthrough"]
         ),
         .library(
-            name: "StorylyVideoFeed",
-            targets: ["StorylyVideoFeedWrapper"]
+            name: "StorylyVideoFeedSwiftUI",
+            targets: ["StorylyVideoFeedPassthrough"]
         ),
         .library(
-            name: "StorylySwipeCard",
-            targets: ["StorylySwipeCardWrapper"]
+            name: "StorylySwipeCardSwiftUI",
+            targets: ["StorylySwipeCardPassthrough"]
         ),
         .library(
-            name: "StorylyCanvas",
-            targets: ["StorylyCanvasWrapper"]
+            name: "StorylyCanvasSwiftUI",
+            targets: ["StorylyCanvasPassthrough"]
         )
     ],
     dependencies: [
@@ -67,27 +69,27 @@ let package = Package(
         // storyly-placement-ios. SwiftPM does not offer a transitive dependency's products in a
         // consumer's link list, which is why each one needs a target and a product here.
         .target(
-            name: "StorylyStoryBarWrapper",
+            name: "StorylyStoryBarPassthrough",
             dependencies: [.product(name: "StorylyStoryBar", package: "storyly-placement-ios")],
             path: "Sources/StorylyStoryBar"
         ),
         .target(
-            name: "StorylyBannerWrapper",
+            name: "StorylyBannerPassthrough",
             dependencies: [.product(name: "StorylyBanner", package: "storyly-placement-ios")],
             path: "Sources/StorylyBanner"
         ),
         .target(
-            name: "StorylyVideoFeedWrapper",
+            name: "StorylyVideoFeedPassthrough",
             dependencies: [.product(name: "StorylyVideoFeed", package: "storyly-placement-ios")],
             path: "Sources/StorylyVideoFeed"
         ),
         .target(
-            name: "StorylySwipeCardWrapper",
+            name: "StorylySwipeCardPassthrough",
             dependencies: [.product(name: "StorylySwipeCard", package: "storyly-placement-ios")],
             path: "Sources/StorylySwipeCard"
         ),
         .target(
-            name: "StorylyCanvasWrapper",
+            name: "StorylyCanvasPassthrough",
             dependencies: [.product(name: "StorylyCanvas", package: "storyly-placement-ios")],
             path: "Sources/StorylyCanvas"
         )
