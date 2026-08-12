@@ -53,7 +53,7 @@ let package = Package(
         .binaryTarget(
             name: "StorylyPlacementSwiftUI",
             url: "https://prod-storyly-media.s3-eu-west-1.amazonaws.com/placement-swiftui-sdk/1.12.0/StorylyPlacementSwiftUI.zip",
-            checksum: "54a797ce230dcc2b47b7abc913fff655dd934c307e2b3a51feecf9a03580f66a"
+            checksum: "beddbd5708e86d16cd3db1e9f5c3d3d8645c4f8ae4af95e0517ab9cf1a45fa1c"
         ),
 
         // A binary target carries no dependency edges of its own, so this thin target is what links
