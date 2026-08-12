@@ -4,16 +4,18 @@
 import PackageDescription
 
 let package = Package(
-    name: "PlacementSwiftUI",
+    name: "StorylyPlacementSwiftUI",
     platforms: [
         // The wrapper's API floor: sizeThatFits(_:uiView:context:) and ProposedViewSize are iOS 16+.
         .iOS(.v16)
     ],
     products: [
-        // Main product that users will import (mandatory)
+        // Main product that users will import (mandatory). Named to match the pod and the widget
+        // products below — every product in this package carries the `Storyly` prefix and the
+        // `SwiftUI` suffix.
         .library(
-            name: "PlacementSwiftUI",
-            targets: ["PlacementSwiftUIWrapper"]
+            name: "StorylyPlacementSwiftUI",
+            targets: ["StorylyPlacementSwiftUIWrapper"]
         ),
         // Optional widget renderers, passed through from storyly-placement-ios so consumers do not
         // have to add that package as well. Each widget type must be linked for it to render; link
@@ -49,20 +51,20 @@ let package = Package(
         // Binary target (the actual xcframework). url and checksum are rewritten by the
         // `placement_swiftui_release` fastlane lane in storyly-placement-swiftui-sdk.
         .binaryTarget(
-            name: "PlacementSwiftUI",
-            url: "https://prod-storyly-media.s3-eu-west-1.amazonaws.com/placement-swiftui-sdk/1.12.0/PlacementSwiftUI.zip",
+            name: "StorylyPlacementSwiftUI",
+            url: "https://prod-storyly-media.s3-eu-west-1.amazonaws.com/placement-swiftui-sdk/1.12.0/StorylyPlacementSwiftUI.zip",
             checksum: "54a797ce230dcc2b47b7abc913fff655dd934c307e2b3a51feecf9a03580f66a"
         ),
 
         // A binary target carries no dependency edges of its own, so this thin target is what links
         // the SDK alongside it.
         .target(
-            name: "PlacementSwiftUIWrapper",
+            name: "StorylyPlacementSwiftUIWrapper",
             dependencies: [
-                "PlacementSwiftUI",
+                "StorylyPlacementSwiftUI",
                 .product(name: "StorylyPlacement", package: "storyly-placement-ios")
             ],
-            path: "Sources/PlacementSwiftUI"
+            path: "Sources/StorylyPlacementSwiftUI"
         ),
 
         // Passthrough targets: no code, they only forward to the matching widget product of
