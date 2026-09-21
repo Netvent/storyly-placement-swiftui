@@ -45,15 +45,15 @@ let package = Package(
     ],
     dependencies: [
         // The Placement SDK. Consumers get it through this package, so they only add one URL.
-        .package(url: "https://github.com/Netvent/storyly-placement-ios", exact: "1.13.0")
+        .package(url: "https://github.com/Netvent/storyly-placement-ios", exact: "1.16.0")
     ],
     targets: [
         // Binary target (the actual xcframework). url and checksum are rewritten by the
         // `placement_swiftui_release` fastlane lane in storyly-placement-swiftui-sdk.
         .binaryTarget(
             name: "StorylyPlacementSwiftUI",
-            url: "https://prod-storyly-media.s3-eu-west-1.amazonaws.com/placement-swiftui-sdk/1.13.0/StorylyPlacementSwiftUI.zip",
-            checksum: "2cd582faf1b198b1c65c6111eaf8d01a138e353fa87540eb14abed65ecda5ae4"
+            url: "https://prod-storyly-media.s3-eu-west-1.amazonaws.com/placement-swiftui-sdk/1.16.0/StorylyPlacementSwiftUI.zip",
+            checksum: "018e8f93d689fe0e3519a09372c8cbd5a15188761c724ff1303870cca787ee08"
         ),
 
         // A binary target carries no dependency edges of its own, so this thin target is what links
